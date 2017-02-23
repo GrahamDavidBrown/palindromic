@@ -1,5 +1,5 @@
 import re
-
+palindromes = open("palindromes.txt", "r")
 
 def is_palindrome(user_input):
     user_input = re.sub(r'[^A-Za-z"]', "", user_input).lower()
@@ -22,11 +22,28 @@ def reverser(count, second_half_list, second_half):
     return reverser(count, second_half_list, second_half)
 
 
+def reader():
+    return (palindromes.readlines())
+
+
 def main():
     playing = True
-    while playing == True:
+    palindromes = reader()
+    while playing:
+        test = palindromes.pop(0)
+        if palindromes == []:
+            playing = False
+        if is_palindrome(test):
+            print(test + " is a palindrome.")
+        else:
+            print(test + " is not a palindrome.")
+
+
+def mainx():
+    playing = True
+    while playing:
         user_input = input("enter some text to determine if it is a palindrome(QQ to quit): ")
-        if user_input == "QQ": #Working as intended
+        if user_input == "QQ":  #Working as intended
             playing = False
         if is_palindrome(user_input):
             print(user_input + " is a palindrome.")
